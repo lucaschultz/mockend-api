@@ -1,33 +1,48 @@
 {
-  "Post": {
-    "title": { "loremWords": { "minLength": 5, "maxLength": 20 },
-    "excerpt": { "minLength": 100, "maxLength": 200 },
-    "body": {
-      "loremParagraphs": { "minLength": 200, "maxLength": 500 }
-    },
-    "comments": {
-      "hasMany": "Comment"
-    },
-    "category": {
-      "belongsTo": "Category",
+    "Post": {
+        "title": {
+            "loremWords": {
+                "minLength": 5,
+                "maxLength": 20
+            },
+            "excerpt": {
+                "minLength": 100,
+                "maxLength": 200
+            },
+            "body": {
+                "loremParagraphs": {
+                    "minLength": 200,
+                    "maxLength": 500
+                }
+            },
+            "comments": {
+                "hasMany": "Comment"
+            },
+            "category": {
+                "belongsTo": "Category",
+            }
+        },
+        "Comment": {
+            "body": {
+                "string": {}
+            },
+            "post": {
+                "belongsTo": "Post"
+            },
+            "author": {
+                "regexp": "[A-Z][a-z]{5,10}"
+            },
+        },
+        "Category": {
+            "string": [
+                "Tech",
+                "Coding",
+                "Personal",
+                "Cars"
+            ],
+            "posts": {
+                "hasMany": "Posts",
+            }
+        }
     }
-  },
-  "Comment": {
-    "body": { "string": {} },
-    "post": {
-      "belongsTo": "Post"
-    },
-    "author": { "regexp": "[A-Z][a-z]{5,10}" },
-  },
-  "Category": {
-    "string": [
-      "Tech",
-      "Coding",
-      "Personal",
-      "Cars"
-    ],
-    "posts": {
-      "hasMany": "Posts",
-    }
-  }
 }
